@@ -1,5 +1,5 @@
 (function($) {
-    $.fn.autoComplete = function(options) {
+    $.fn.autoComplete2 = function(options) {
         var defaults = {
             data: []
         };
