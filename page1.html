@@ -16,6 +16,9 @@
 <body>aabc
     <div id="MyTableContainer"></div>
     <input type='text' id='myInput' />
+    <input type="text" id="input" list="suggestions">
+<datalist id="suggestions">
+</datalist>
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -48,10 +51,13 @@
    
 
 
-        var data = ["United States", "Canada", "Mexico", "Brazil", "Argentina"];
+        var data2 = ["United States", "Canada", "Mexico", "Brazil", "Argentina"];
 $('#myInput').autocomplete(data);
 
-
+var data = ["Apple", "Banana", "Carrot", "Dragonfruit", "Eggplant", "Fig", "Grape"];
+    $("#input").autoComplete({
+        data: data
+    });
     });
 </script>
 </html>
