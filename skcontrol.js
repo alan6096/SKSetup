@@ -1,22 +1,32 @@
-(function ($) {
-  $.fn.autocomplete = function(data) {
-  var ul = $('<ul></ul>');
-  for (var i = 0; i < data.length; i++) {
-    var li = $('<li></li>').text(data[i]);
-    ul.append(li);
-  }
+(function($) {
+    $.fn.autoComplete = function(options) {
+        var defaults = {
+            data: []
+        };
 
-  this.on('input', function() {
-    var val = this.val();
-    ul.empty();
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].indexOf(val) !== -1) {
-        var li = $('<li></li>').text(data[i]);
-        ul.append(li);
-      }
-    }
-  });
+        var settings = $.extend({}, defaults, options);
 
-  this.after(ul);
-};
-  })(jQuery);
+        return this.each(function() {
+            var input = this;
+            var datalistId = $(input).attr('list');
+            var datalist = $("#" + datalistId);
+
+            $(input).on('input', function() {
+                var value = $(this).val();
+
+                // Clear previous options
+                datalist.empty();
+
+                if (value.length > 0) {
+                    var regex = new RegExp(`^${value}`, 'i');
+                    var suggestions = settings.data.filter(item => regex.test(item));
+
+                    suggestions.forEach(item => {
+                        var option = $("<option>").val(item);
+                        datalist.append(option);
+                    });
+                }
+            });
+        });
+    };
+}(jQuery));
