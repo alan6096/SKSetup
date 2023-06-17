@@ -9,6 +9,8 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jtable/2.4.0/jtable.min.js"></script>
+    <script src="skcontrol.js"></script>
+    
 </head>
 
 <body>aabc
@@ -43,26 +45,8 @@
         });
 
         $('#MyTableContainer').jtable('load');
-   $.fn.autocomplete = function(data) {
-  var ul = $('<ul></ul>');
-  for (var i = 0; i < data.length; i++) {
-    var li = $('<li></li>').text(data[i]);
-    ul.append(li);
-  }
+   
 
-  this.on('input', function() {
-    var val = this.val();
-    ul.empty();
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].indexOf(val) !== -1) {
-        var li = $('<li></li>').text(data[i]);
-        ul.append(li);
-      }
-    }
-  });
-
-  this.after(ul);
-};
 
         var data = ["United States", "Canada", "Mexico", "Brazil", "Argentina"];
 $('#myInput').autocomplete(data);
