@@ -13,6 +13,7 @@
 
 <body>aabc
     <div id="MyTableContainer"></div>
+    <input type='text' id='myInput' />
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -42,6 +43,31 @@
         });
 
         $('#MyTableContainer').jtable('load');
+   $.fn.autocomplete = function(data) {
+  var ul = $('<ul></ul>');
+  for (var i = 0; i < data.length; i++) {
+    var li = $('<li></li>').text(data[i]);
+    ul.append(li);
+  }
+
+  this.on('input', function() {
+    var val = this.val();
+    ul.empty();
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].indexOf(val) !== -1) {
+        var li = $('<li></li>').text(data[i]);
+        ul.append(li);
+      }
+    }
+  });
+
+  this.after(ul);
+};
+
+        var data = ["United States", "Canada", "Mexico", "Brazil", "Argentina"];
+$('#myInput').autocomplete(data);
+
+
     });
 </script>
 </html>
